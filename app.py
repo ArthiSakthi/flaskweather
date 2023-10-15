@@ -8,7 +8,7 @@ def index():
         print(city)
 
         if city:
-            api_key = 'd9a370b6d08a1b9f99297f63d28fec27'
+            api_key = 'your_api_key'
             url = f"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&units=metric"
             response = requests.get(url)
             print(response.status_code)
