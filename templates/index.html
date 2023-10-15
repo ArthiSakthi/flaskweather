@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WEATHER FORECASTER</title>
+    <style>
+        body {
+            background-image: url(https://img.freepik.com/free-photo/white-cloud-blue-sky_74190-7709.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #edf2f7, #e2e8f0);
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        background: #007BFF;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        margin: 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        text-align: center;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+     input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 50%;
+        margin: 10px auto;
+        background: #f7f7f7;
+    }
+
+    button {
+        padding: 10px 20px;
+        background: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+        background: #0056b3;
+        transform: scale(1.05);
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #333;
+    }
+
+    table {
+        font-family: Arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background: #007BFF;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+    <h1>WEATHER FORECASTER </h1>
+    <form action="/" method="post">
+        <label for="city">Enter City name:</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Check Weather</button>
+    </form>
+    {% if data %}
+    <h2>Weather Forecast for {{ data.city.name }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date and Time</th>
+                <th>Temperature (°C)</th>
+                <th>Weather</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for forecast in data.list %}
+            <tr>
+                <td>{{ forecast.dt_txt }}</td>
+                <td>{{ forecast.main.temp }}</td>
+                <td>{{ forecast.weather[0].description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>
